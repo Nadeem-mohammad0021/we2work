@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /private
-Sitemap:https://we2work.netlify.app/sitemap.xml
