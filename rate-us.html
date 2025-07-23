@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We2Work Product Review</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" type="png" href="C:\Users\manid\Downloads\myweb\3.png">
+
+        <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Inline CSS for responsiveness -->
+    <style>
+    .container {
+        max-width: 90%;
+        margin: 0 auto;
+        margin-top: 30px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    input.input-field, textarea.textarea-field {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 1em;
+        box-sizing: border-box;
+    }
+
+    button#submit {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        margin-bottom: 20px; /* Added margin to separate from the footer */
+    }
+
+    .stars {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .rating {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+
+    @media (max-width: 600px) {
+        h1, h2 {
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .container {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Header with navigation menu -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="logo" href="index.html">
+                <img src="3.png" alt="Ink & Imagination Logo">
+            </a>
+
+            <!-- Toggler Button for Small Screens -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help-center.html">Help Center</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="become-a-writer.html">Become a Writer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="rate-us.html">Rate Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Review Form -->
+    <div class="container"  style="font-family: 'Times New Roman', Times, serif;">
+        <h1 style="font-family: Georgia, serif;"><b>We2Work</b></h1>
+        <h2><b>Product Review</b></h2>
+        <div class="rating">
+            <span id="rating">0</span>/5
+        </div>
+        <div class="stars" id="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <p><b>Share your review:</b></p>
+        <input type="text" id="username" placeholder="Your name" class="input-field">
+        <textarea id="review" placeholder="Write your review here" class="textarea-field"></textarea>
+        <button id="submit">Submit</button>
+        <div class="reviews" id="reviews"></div>
+    </div>
+
+    <footer>
+        <p  style=" font-family: Georgia, serif;">&copy; 2024 We2Work</p>
+    </footer>
+
+    <script>
+        const stars = document.querySelectorAll(".star");
+        const rating = document.getElementById("rating");
+        const reviewText = document.getElementById("review");
+        const username = document.getElementById("username");
+        const submitBtn = document.getElementById("submit");
+        const reviewsContainer = document.getElementById("reviews");
+
+        // Update the rating when a star is clicked
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                const value = parseInt(star.getAttribute("data-value"));
+                rating.innerText = value;
+
+                // Remove all existing selected classes
+                stars.forEach((s) => s.classList.remove("selected"));
+
+                // Add the selected class to the clicked star and update its color
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add("selected");
+                    }
+                });
+            });
+        });
+
+        // Handle review submission
+        submitBtn.addEventListener("click", () => {
+            const review = reviewText.value.trim();
+            const userRating = parseInt(rating.innerText);
+            const userName = username.value.trim();
+
+            if (!userRating || !review || !userName) {
+                alert("Please provide a name, select a rating, and write a review.");
+                return;
+            }
+
+            const reviewElement = document.createElement("div");
+            reviewElement.classList.add("review");
+            reviewElement.innerHTML = `
+                <p><strong>${userName}</strong></p>
+                <p class="rating">Rating: ${userRating}/5</p>
+                <p>${review}</p>
+            `;
+            reviewsContainer.appendChild(reviewElement);
+
+            // Save to localStorage
+            const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+            reviews.push({ userName, userRating, review });
+            localStorage.setItem("reviews", JSON.stringify(reviews));
+
+            // Clear the form after submission
+            reviewText.value = "";
+            username.value = "";
+            rating.innerText = "0";
+            stars.forEach((s) => s.classList.remove("selected"));
+        });
+
+        // Load reviews from localStorage and display them
+        document.addEventListener("DOMContentLoaded", () => {
+            const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+            reviews.forEach(review => {
+                const reviewElement = document.createElement("div");
+                reviewElement.classList.add("review");
+                reviewElement.innerHTML = `
+                    <p><strong>${review.userName}</strong></p>
+                    <p class="rating">Rating: ${review.userRating}/5</p>
+                    <p>${review.review}</p>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        });
+    </script>
+
+      <!-- Bootstrap JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

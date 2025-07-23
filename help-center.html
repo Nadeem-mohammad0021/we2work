@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" type="png" href="C:\Users\manid\Downloads\myweb\3.png">
+
+        <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="logo" href="index.html">
+                    <img src="3.png" alt="Ink & Imagination Logo">
+                </a>
+
+                <!-- Toggler Button for Small Screens -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="services.html">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="help-center.html">Help Center</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="become-a-writer.html">Become a Writer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rate-us.html">Rate Us</a>
+                 </li>
+
+              </ul>
+            </div>
+          </nav>
+
+    </header>
+
+    <main>
+        <section class="help-center"  style="font-family: 'Times New Roman', Times, serif;">
+            <h1><b>Need Help?</b></h1>
+            <form id="helpForm">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="query">Your Query</label>
+                <textarea id="query" name="query" required></textarea>
+    
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <button type="button" class="whatsapp-btn" onclick="openWhatsapp('I need help !!')">Contact via WhatsApp</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    
+
+    <footer>
+        <p  style=" font-family: Georgia, serif;">&copy; 2024 We2Work</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+      <!-- Bootstrap JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
