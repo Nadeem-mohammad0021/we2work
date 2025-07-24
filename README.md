@@ -134,7 +134,7 @@ We welcome contributions from developers, designers, and testers.
 ## 📬 Contact
 
 **👤 Nadeem Mohammad**
-📧 [[nadeem.mohammad0021@gmail.com](mailto:nadeem.mohammad0021@gmail.com)]
+📧 [[nadeemmohammad0021@gmail.com](mailto:nadeemmohammad0021@gmail.com)]
 🔗 [[GitHub Profile](https://github.com/Nadeem-mohammad0021)]
 
 ---
